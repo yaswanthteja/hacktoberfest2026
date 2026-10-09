@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f2e9">
+    <meta name="description" content="Offline-friendly ideas for a little more movement and a little less scrolling.">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Outside In | Make room for real life</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="wordmark" href="#home" aria-label="Outside In home">
+          <span class="mark" aria-hidden="true">O</span>
+          <span>outside <b>in</b></span>
+        </a>
+        <div class="topbar-right">
+          <span class="privacy-label"><span class="privacy-dot"></span> YOUR DEVICE. YOUR PACE.</span>
+          <button class="icon-button" id="install-button" type="button" aria-label="Install Outside In" title="Install app" hidden>
+            <span aria-hidden="true">↓</span>
+          </button>
+        </div>
+      </header>
+
+      <main id="home">
+        <section class="opening" aria-labelledby="page-title">
+          <div class="opening-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> A FIELD GUIDE FOR YOUR FREE TIME</p>
+            <h1 id="page-title">Make room<br>for <em>real life.</em></h1>
+            <p class="opening-note">A small nudge toward something good, beyond the scroll.</p>
+          </div>
+          <div class="scene-wrap" aria-label="Illustration of a walking path through rolling hills">
+            <canvas id="field-scene" width="760" height="340" role="img" aria-label="A path winding past trees and hills"></canvas>
+            <span class="scene-caption">TAKE THE LONG WAY</span>
+            <span class="scene-coordinates">FIELD NOTE 001 / TODAY</span>
+          </div>
+        </section>
+
+        <section class="planner" aria-labelledby="planner-title">
+          <div class="planner-main">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">NO FEED. JUST A NEXT STEP.</p>
+                <h2 id="planner-title">What fits your day?</h2>
+              </div>
+              <span class="model-status" id="model-status" aria-live="polite">
+                <span class="status-dot"></span><span id="model-status-text">Checking local AI</span>
+              </span>
+            </div>
+
+            <form id="preferences-form" class="preferences">
+              <fieldset class="choice-group">
+                <legend>Where are you?</legend>
+                <div class="segmented" role="group" aria-label="Activity setting">
+                  <button type="button" class="segment is-selected" data-setting="outdoor" aria-pressed="true">Outside</button>
+                  <button type="button" class="segment" data-setting="indoor" aria-pressed="false">Inside</button>
+                  <button type="button" class="segment" data-setting="either" aria-pressed="false">Surprise me</button>
+                </div>
+              </fieldset>
+              <fieldset class="choice-group">
+                <legend>How much time?</legend>
+                <div class="segmented" role="group" aria-label="Available time">
+                  <button type="button" class="segment" data-minutes="10" aria-pressed="false">10 min</button>
+                  <button type="button" class="segment is-selected" data-minutes="20" aria-pressed="true">20 min</button>
+                  <button type="button" class="segment" data-minutes="45" aria-pressed="false">45 min</button>
+                </div>
+              </fieldset>
+              <fieldset class="choice-group">
+                <legend>What's your energy?</legend>
+                <div class="segmented" role="group" aria-label="Energy level">
+                  <button type="button" class="segment is-selected" data-energy="gentle" aria-pressed="true">Easygoing</button>
+                  <button type="button" class="segment" data-energy="lively" aria-pressed="false">Let's move</button>
+                </div>
+              </fieldset>
+              <div class="find-row">
+                <button class="primary-button" id="find-button" type="submit">
+                  <span class="button-spark" aria-hidden="true">✳</span>
+                  <span id="find-button-label">Find my next reset</span>
+                  <span class="button-arrow" aria-hidden="true">→</span>
+                </button>
+                <p class="private-note"><span aria-hidden="true">⌂</span> Your choices stay on this device.</p>
+              </div>
+            </form>
+
+            <article class="activity-result" id="activity-result" aria-live="polite" hidden>
+              <div class="result-topline">
+                <span class="result-label"><span class="result-mark" aria-hidden="true">✳</span> YOUR NEXT RESET</span>
+                <span class="result-setting" id="result-setting"></span>
+              </div>
+              <div class="result-body">
+                <div>
+                  <p class="result-duration" id="result-duration"></p>
+                  <h3 id="result-title"></h3>
+                  <p class="result-description" id="result-description"></p>
+                </div>
+                <div class="benefit-note">
+                  <span class="benefit-icon" aria-hidden="true">+</span>
+                  <div><b>A little good for you</b><p id="result-benefit"></p></div>
+                </div>
+              </div>
+              <div class="result-bottom">
+                <p class="model-nudge" id="model-nudge"></p>
+                <button class="start-button" id="start-button" type="button">Put phone away <span aria-hidden="true">↗</span></button>
+              </div>
+            </article>
+          </div>
+
+          <aside class="side-column" aria-label="Your outside-in streak">
+            <section class="streak-panel">
+              <div class="streak-head">
+                <span class="streak-icon" aria-hidden="true">↗</span>
+                <span>YOUR OFF-SCREEN TIME</span>
+              </div>
+              <p class="streak-number"><span id="minutes-total">0</span><small>min</small></p>
+              <p class="streak-copy">spent in the real world</p>
+              <div class="week-track" id="week-track" aria-label="Activity over the last seven days"></div>
+              <div class="week-labels"><span>7 DAYS AGO</span><span>TODAY</span></div>
+              <p class="sessions-total"><span id="sessions-total">0</span> small resets completed</p>
+            </section>
+            <section class="offline-panel">
+              <div class="offline-heading"><span class="offline-icon" aria-hidden="true">◎</span><h3>Works without a signal.</h3></div>
+              <p>Activities, benefits, and your progress live on this device. Local AI is optional and never needs the cloud.</p>
+              <span class="offline-badge"><span></span> OFFLINE READY</span>
+            </section>
+            <p class="health-source">Movement notes are general, not medical advice. <a href="https://www.cdc.gov/physical-activity-basics/health-benefits/index.html" target="_blank" rel="noreferrer">About physical activity ↗</a></p>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="page-footer">
+        <span>LESS SCREEN. MORE SCENE.</span>
+        <span>BUILT FOR WHERE THE WIFI ENDS.</span>
+      </footer>
+    </div>
+
+    <dialog class="session-dialog" id="session-dialog" aria-labelledby="session-title">
+      <button class="dialog-close" id="close-session" type="button" aria-label="Close activity view" title="Close">×</button>
+      <p class="eyebrow">THIS IS YOUR CUE</p>
+      <h2 id="session-title">Phone down.<br><em>World on.</em></h2>
+      <p class="session-activity" id="session-activity"></p>
+      <p class="session-instruction" id="session-instruction"></p>
+      <div class="session-clock" id="session-clock" aria-live="off">20:00</div>
+      <p class="session-state" id="session-state">Your timer keeps its place if the screen sleeps.</p>
+      <button class="complete-button" id="complete-button" type="button">I'm back <span aria-hidden="true">→</span></button>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

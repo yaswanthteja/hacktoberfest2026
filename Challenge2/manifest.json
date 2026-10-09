@@ -1,0 +1,11 @@
+{
+  "name": "Outside In - Make room for real life",
+  "short_name": "Outside In",
+  "description": "Offline-friendly ideas for a little more movement and a little less scrolling.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f2e9",
+  "theme_color": "#f4f2e9",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
